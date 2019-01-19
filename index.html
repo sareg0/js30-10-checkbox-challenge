@@ -122,17 +122,15 @@
     checkBox.addEventListener("click", blam)
   })
 
-  let lastChecked;
+  let lastChecked = checkBoxes[0];
 
   function blam (event) {
     let between = false
-    
     if (shiftDown && this.checked) {
       checkBoxes.forEach(checkbox => {
         console.log(checkbox)
         if (checkbox === this || checkbox === lastChecked) {
           between = !between
-          console.log("checking in between")
         }
 
         if (between) {
