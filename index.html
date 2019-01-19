@@ -30,7 +30,7 @@
       border-bottom: 0;
     }
 
-    input:checked + p {
+    input:checked + label {
       background: #F9F9F9;
       text-decoration: line-through;
     }
@@ -39,7 +39,7 @@
       margin: 20px;
     }
 
-    p {
+    label {
       margin: 0;
       padding: 20px;
       transition: background 0.2s;
@@ -63,40 +63,40 @@
 
   <div class="inbox">
     <div class="item">
-      <input type="checkbox">
-      <p>This is an inbox layout.</p>
+      <input id="item1" type="checkbox">
+      <label for="item1">This is an inbox layout.</label>
     </div>
     <div class="item">
-      <input type="checkbox">
-      <p>Check one item</p>
+      <input id="item2" type="checkbox">
+      <label for="item2">Check one item</label>
     </div>
     <div class="item">
-      <input type="checkbox">
-      <p>Hold down your Shift key</p>
+      <input id="item3" type="checkbox">
+      <label for="item3">Hold down your Shift key</label>
     </div>
     <div class="item">
-      <input type="checkbox">
-      <p>Check a lower item</p>
+      <input id="item4" type="checkbox">
+      <label for="item4">Check a lower item</label>
     </div>
     <div class="item">
-      <input type="checkbox">
-      <p>Everything in between should also be set to checked</p>
+      <input id="item5" type="checkbox">
+      <label for="item5">Everything in between should also be set to checked</label>
     </div>
     <div class="item">
-      <input type="checkbox">
-      <p>Try to do it without any libraries</p>
+      <input id="item6" type="checkbox">
+      <label for="item6">Try to do it without any libraries</label>
     </div>
     <div class="item">
-      <input type="checkbox">
-      <p>Just regular JavaScript</p>
+      <input id="item7" type="checkbox">
+      <label for="item7">Just regular JavaScript</label>
     </div>
     <div class="item">
-      <input type="checkbox">
-      <p>Good Luck!</p>
+      <input id="item8" type="checkbox">
+      <label for="item8">Good Luck!</label>
     </div>
     <div class="item">
-      <input type="checkbox">
-      <p>Don't forget to tweet your result!</p>
+      <input id="item9" type="checkbox">
+      <label for="item9">Don't forget to tweet your result!</label>
     </div>
   </div>
 
@@ -120,6 +120,7 @@
 
   checkBoxes.forEach((checkBox, index) => {
     checkBox.addEventListener("click", (event) => {
+      console.log(event)
       if (shiftDown && event.target.checked) {
         let allChecked = determineChecked(index)
         let closest = determineClosestItem(allChecked, index)
