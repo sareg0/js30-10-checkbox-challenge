@@ -104,14 +104,27 @@
   const checkBoxes = document.querySelectorAll("input")
   // console.log(checkBoxes.length - (checkBoxes.length)) //beginning
   // console.log(checkBoxes.length - 1) //end
+  let shiftDown = false
+  
+  document.addEventListener("keydown", (event) => {
+    if (event.keyCode == 16) {
+      shiftDown = true
+    }
+  })
+
+  document.addEventListener("keyup", (event) => {
+    if (event.keyCode == 16) {
+      shiftDown = false
+    }
+  })
+
   checkBoxes.forEach((checkBox, index) => {
     checkBox.addEventListener("click", (event) => {
-      console.log(event)
-      if (event.shiftKey && event.target.checked) {
+      if (shiftDown && event.target.checked) {
         let allChecked = determineChecked(index)
         let closest = determineClosestItem(allChecked, index)
         checkThem(closest, index)
-      } else if (event.shiftKey && !event.target.checked) {
+      } else if (shiftDown && !event.target.checked) {
         console.log("unCheckEm")
       }
     })
