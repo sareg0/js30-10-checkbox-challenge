@@ -119,42 +119,29 @@
   })
 
   checkBoxes.forEach((checkBox, index) => {
-    checkBox.addEventListener("click", (event) => {
-      console.log(event)
-      if (shiftDown && event.target.checked) {
-        let allChecked = determineChecked(index)
-        let closest = determineClosestItem(allChecked, index)
-        checkThem(closest, index)
-      } else if (shiftDown && !event.target.checked) {
-        console.log("unCheckEm")
-      }
-    })
+    checkBox.addEventListener("click", blam)
   })
 
-  function checkThem(closest, currentEl) {
-    for (step = closest; step < currentEl; step++) {
-      checkBoxes[step].checked = true
-    }
-  }
+  let lastChecked;
 
-  function determineClosestItem(checkedElements, elementBeingChecked) {
-    return checkedElements.reduce((previous, current) => {
-      return Math.abs(current - elementBeingChecked) < Math.abs(previous - elementBeingChecked) ? current : previous;
-    })
-  }
-
-  function determineChecked (currentItemIndex) {
-    let checked = []
-    checkBoxes.forEach((box, index) => {
-      if (index != currentItemIndex) {
-        if (index == 0) {
-          checked.push(index)
-        } else if (box.checked) {
-          checked.push(index)
+  function blam (event) {
+    let between = false
+    
+    if (shiftDown && this.checked) {
+      checkBoxes.forEach(checkbox => {
+        console.log(checkbox)
+        if (checkbox === this || checkbox === lastChecked) {
+          between = !between
+          console.log("checking in between")
         }
-      }
-    })
-    return checked
+
+        if (between) {
+          checkbox.checked = true
+        }
+      })
+    }
+
+    lastChecked = this
   }
 
 </script>
