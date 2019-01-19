@@ -54,8 +54,13 @@
    The following is a common layout you would see in an email client.
 
    When a user clicks a checkbox, holds Shift, and then clicks another checkbox a few rows down, all the checkboxes inbetween those two checkboxes should be checked.
-
+  
+   enhancement ideas:
+    - make the inputs have labels so the whole area i clickable/tappable
+    - make it work with key board input
+      - i.e. tab to input, hold shift, press spacebar and have the same effect
   -->
+
   <div class="inbox">
     <div class="item">
       <input type="checkbox">
@@ -99,23 +104,14 @@
   const checkBoxes = document.querySelectorAll("input")
   // console.log(checkBoxes.length - (checkBoxes.length)) //beginning
   // console.log(checkBoxes.length - 1) //end
-  let shiftDown = false
-  
-  document.addEventListener("keydown", (event) => {
-    shiftDown = (event.keyCode == 16)
-  })
-
-  document.addEventListener("keyup", (event) => {
-    shiftDown = false
-  })
-
   checkBoxes.forEach((checkBox, index) => {
-    checkBox.addEventListener("input", (event) => {
-      if (shiftDown && event.target.checked) {
+    checkBox.addEventListener("click", (event) => {
+      console.log(event)
+      if (event.shiftKey && event.target.checked) {
         let allChecked = determineChecked(index)
         let closest = determineClosestItem(allChecked, index)
         checkThem(closest, index)
-      } else if (shiftDown && !event.target.checked) {
+      } else if (event.shiftKey && !event.target.checked) {
         console.log("unCheckEm")
       }
     })
