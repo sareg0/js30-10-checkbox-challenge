@@ -119,12 +119,12 @@
   })
 
   checkBoxes.forEach((checkBox, index) => {
-    checkBox.addEventListener("click", blam)
+    checkBox.addEventListener("click", handleCheckInput)
   })
 
   let lastChecked;
 
-  function blam (event) {
+  function handleCheckInput (event) {
     let between = false
     if (shiftDown && this.checked) {
       checkBoxes.forEach(checkbox => {
